@@ -172,7 +172,7 @@ public class LinkedList<T> {
             test.testInsertarLista_ListaNoVacia();
             test.testInsertarLista_ListaActualVacia();
 
-
+            //Sublista correcta
             test.SubLista1CasoGeneral();
             test.SubLista1PosicionFinalFueraDeRango();
             test.SubLista1PosicionInicialNegativa();
