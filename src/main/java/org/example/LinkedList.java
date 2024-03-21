@@ -53,11 +53,52 @@ public class LinkedList<T> {
 
     }
     public void imprimir(){
+        if ( head == null){
+            System.out.println("Lista sin datos");
+        }
         Node<T> current = head;
         while (current != null) {
             System.out.println(current.data);
             current = current.next;
         }
+    }
+
+    public int tamaño() {
+        int tamaño = 0;
+        Node<T> current = head;
+        while (current != null) {
+            tamaño++;
+            current = current.next;
+        }
+        return tamaño;
+    }
+
+    public void Sublista(int... nums){
+        LinkedList<T> sublist = new LinkedList<>();
+        for (int num : nums){
+            Node currentA = sublist.head;
+            Node current = head;
+            if (num < tamaño()) {
+                if (currentA == null) {
+                    int i = 0;
+                    while (i < num) {
+                        current = current.next;
+                        i += 1;
+                    }
+                    sublist.add((T) current.data);
+                } else {
+                    int i = 0;
+                    while (i < num) {
+                        current = current.next;
+                        i += 1;
+                    }
+                    sublist.add((T) current.data);
+
+                }
+
+            }
+        }
+        sublist.imprimir();
     }
 
 
@@ -80,7 +121,10 @@ public class LinkedList<T> {
 
             dec.insertarlista(list);
             decimals.insertarlista(dec);
-            decimals.imprimir();
+            numbers.insertarlista(decimals);
+            //numbers.imprimir();
+            System.out.println("<-------------------------------------------><------------------------------------------->");
+            numbers.Sublista(1, 5, 8);
         }
 
 
