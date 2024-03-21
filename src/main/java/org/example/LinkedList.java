@@ -62,6 +62,17 @@ public class LinkedList<T> {
             current = current.next;
         }
     }
+    public T obtener(int indice) {
+        if (indice < 0 || indice >= tamaño()) {
+            throw new IndexOutOfBoundsException("Índice fuera de los límites de la lista.");
+        }
+
+        Node<T> current = head;
+        for (int i = 0; i < indice; i++) {
+            current = current.next;
+        }
+        return current.data;
+    }
 
     public int tamaño() {
         int tamaño = 0;
@@ -72,13 +83,40 @@ public class LinkedList<T> {
         }
         return tamaño;
     }
+    public boolean esVacia() {
+        return head == null;
+    }
 
-    public void Sublista(int... nums){
+    public LinkedList<T> subLista1(int inicio, int fin) {
+        LinkedList<T> sublista = new LinkedList<>();
+        Node<T> current = head;
+
+        // Si el inicio o el fin están fuera de los límites de la lista, retorna una lista vacía
+        if (inicio < 0 || inicio >= tamaño() || fin <= 0 || fin > tamaño() || inicio >= fin) {
+            return sublista;
+        }
+
+        // Avanza hasta la posición inicial
+        for (int i = 0; i < inicio; i++) {
+            current = current.next;
+        }
+
+        // Añade los elementos desde la posición inicial hasta la posición final a la sublista
+        for (int i = inicio; i < fin; i++) {
+            sublista.add(current.data);
+            current = current.next;
+        }
+
+        return sublista;
+    }
+
+
+    public LinkedList<T> Sublista(int... nums){ // esta va a cada elemento por que no leí :)
         LinkedList<T> sublist = new LinkedList<>();
         for (int num : nums){
             Node currentA = sublist.head;
             Node current = head;
-            if (num < tamaño()) {
+            if (0 <= num & num < tamaño()) {
                 if (currentA == null) {
                     int i = 0;
                     while (i < num) {
@@ -98,33 +136,52 @@ public class LinkedList<T> {
 
             }
         }
-        sublist.imprimir();
+        return sublist;
+    }
+
+    public void invertir() {
+        Node<T> prev = null;
+        Node<T> current = head;
+        Node<T> next = null;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        head = prev;
     }
 
 
 
 
-        public static void main (String[]args){
-            LinkedList<String> list = new LinkedList<>();
-            list.add("Hello");
-            list.add("World");
-            list.add("Java");
-            LinkedList<Integer> numbers = new LinkedList<>();
-            numbers.add(1);
-            numbers.add(2);
-            LinkedList<Double> decimals = new LinkedList<>();
-            decimals.add(3.14);
-            decimals.add(2.71);
-            LinkedList<Double> dec = new LinkedList<>();
 
-
-
-            dec.insertarlista(list);
-            decimals.insertarlista(dec);
-            numbers.insertarlista(decimals);
-            //numbers.imprimir();
+    public static void main (String[]args){
             System.out.println("<-------------------------------------------><------------------------------------------->");
-            numbers.Sublista(1, 5, 8);
+            test test = new test();
+
+
+
+            test.testInsertarLista_ListaVacia();
+            test.testInsertarLista_ListaNoVacia();
+            test.testInsertarLista_ListaActualVacia();
+
+
+            test.SubLista1CasoGeneral();
+            test.SubLista1PosicionFinalFueraDeRango();
+            test.SubLista1PosicionInicialNegativa();
+
+
+
+            //sublista de elementos (no es la correcta)
+            test.testSublista_CasoGeneral();
+            test.testSublista_IndiceMayorQueElTamaño();
+            test.testSublista_IndiceNegativo();
+
+            test.testInvertirLista(); // Son 3 también
+
+
         }
 
 
