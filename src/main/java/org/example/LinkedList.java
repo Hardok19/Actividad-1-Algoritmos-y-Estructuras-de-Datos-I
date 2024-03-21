@@ -13,6 +13,7 @@ public class LinkedList<T> {
         }
     }
 
+    // Método para agregar un elemento al final de la lista
     public void add(T data) {
         Node<T> newNode = new Node<>(data);
         if (head == null) {
@@ -26,6 +27,7 @@ public class LinkedList<T> {
         }
     }
 
+    // Método para insertar todos los elementos de otra lista al final de la lista actual
     public void insertarlista(LinkedList Alist) {
         Node currentA = Alist.head;
         Node<T> current = head;
@@ -47,11 +49,10 @@ public class LinkedList<T> {
                 currentA = currentA.next;
                 current = current.next;
             }
-
         }
-
-
     }
+
+    // Método para imprimir todos los elementos de la lista
     public void imprimir(){
         if ( head == null){
             System.out.println("Lista sin datos");
@@ -62,6 +63,8 @@ public class LinkedList<T> {
             current = current.next;
         }
     }
+
+    // Método para obtener el elemento en el índice especificado
     public T obtener(int indice) {
         if (indice < 0 || indice >= tamaño()) {
             throw new IndexOutOfBoundsException("Índice fuera de los límites de la lista.");
@@ -74,6 +77,7 @@ public class LinkedList<T> {
         return current.data;
     }
 
+    // Método para obtener el tamaño de la lista
     public int tamaño() {
         int tamaño = 0;
         Node<T> current = head;
@@ -83,25 +87,25 @@ public class LinkedList<T> {
         }
         return tamaño;
     }
+
+    // Método para verificar si la lista está vacía
     public boolean esVacia() {
         return head == null;
     }
 
+    // Método para obtener una sublista desde la posición de inicio hasta la posición de fin
     public LinkedList<T> subLista1(int inicio, int fin) {
         LinkedList<T> sublista = new LinkedList<>();
         Node<T> current = head;
 
-        // Si el inicio o el fin están fuera de los límites de la lista, retorna una lista vacía
         if (inicio < 0 || inicio >= tamaño() || fin <= 0 || fin > tamaño() || inicio >= fin) {
             return sublista;
         }
 
-        // Avanza hasta la posición inicial
         for (int i = 0; i < inicio; i++) {
             current = current.next;
         }
 
-        // Añade los elementos desde la posición inicial hasta la posición final a la sublista
         for (int i = inicio; i < fin; i++) {
             sublista.add(current.data);
             current = current.next;
@@ -110,8 +114,8 @@ public class LinkedList<T> {
         return sublista;
     }
 
-
-    public LinkedList<T> Sublista(int... nums){ // esta va a cada elemento por que no leí :)
+    // Método para obtener una sublista con elementos en los índices especificados (Fue un error por no leer :))
+    public LinkedList<T> Sublista(int... nums){
         LinkedList<T> sublist = new LinkedList<>();
         for (int num : nums){
             Node currentA = sublist.head;
@@ -131,14 +135,13 @@ public class LinkedList<T> {
                         i += 1;
                     }
                     sublist.add((T) current.data);
-
                 }
-
             }
         }
         return sublist;
     }
 
+    // Método para invertir el orden de los elementos en la lista
     public void invertir() {
         Node<T> prev = null;
         Node<T> current = head;
@@ -152,6 +155,8 @@ public class LinkedList<T> {
         }
         head = prev;
     }
+
+
 
 
 
